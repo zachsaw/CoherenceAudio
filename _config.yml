@@ -1,3 +1,3 @@
-remote_theme: pages-themes/midnight
-plugins:
-  - jekyll-remote-theme
+title: Coherence Audio User Manual
+description: User manual for Coherence Audio.
+remote_theme: jekyll-theme-midnight
