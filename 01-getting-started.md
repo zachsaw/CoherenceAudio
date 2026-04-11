@@ -24,7 +24,7 @@ This chapter walks you through installing Coherence Audio, launching it for the 
 ### From the Microsoft Store (Recommended)
 
 1. Open the **Microsoft Store** on your PC.
-2. Search for **Coherence Audio**, or visit the direct link: [apps.microsoft.com/detail/9NBST9THCH5R](https://apps.microsoft.com/detail/9NBST9THCH5R)
+2. Search for **Coherence Audio**, or visit the direct link: [Microsoft Store listing.](https://apps.microsoft.com/detail/9NBST9THCH5R)
 3. Click **Get** (the base app is free).
 4. Once installed, click **Open** or launch it from the Start menu.
 
