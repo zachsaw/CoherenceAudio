@@ -1,4 +1,4 @@
-# Coherence Audio — User Manual
+# User Manual
 
 Welcome to **Coherence Audio**, the Windows multi-track audio recorder that captures every USB microphone as its own independent audio track — no aggregation drivers, no mixing, no compromises.
 
