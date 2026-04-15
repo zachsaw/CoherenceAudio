@@ -121,11 +121,10 @@ layout: base
 
 <!-- FIXED BACKGROUNDS -->
 <div class="fixed-bg-container">
-  <!-- I've added high-quality Unsplash placeholders so you can see it working immediately! -->
-  <div class="bg-image active" id="bg-0" style="background-image: url('https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Studio/Piano Vibe -->
-  <div class="bg-image" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Band/Live Vibe -->
-  <div class="bg-image" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1618609378039-b572a50b8157?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Abstract/Waveform Vibe -->
-  <div class="bg-image" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Podcast Vibe -->
+  <div class="bg-image active" id="bg-0" style="background-image: url('{{ '/images/piano-recording.jpg' | relative_url }}');"></div> <!-- Studio/Piano Vibe -->
+  <div class="bg-image" id="bg-1" style="background-image: url('{{ '/images/band.jpg' | relative_url }}');"></div> <!-- Band/Live Vibe -->
+  <div class="bg-image" id="bg-2" style="background-image: url('{{ '/images/waveform.jpg' | relative_url }}');"></div> <!-- Abstract/Waveform Vibe -->
+  <div class="bg-image" id="bg-3" style="background-image: url('{{ '/images/podcast.jpg' | relative_url }}');"></div> <!-- Podcast Vibe -->
   <div class="bg-overlay"></div>
 </div>
 
