@@ -1,0 +1,9 @@
+name: Coherence Audio
+description: The Windows multi-track audio recorder for USB microphones.
+url: "" # Leave blank for relative URLs to work locally and on GitHub
+
+defaults:
+  - scope:
+      path: "manual" # Applies to all files in the manual folder
+    values:
+      layout: "manual"
