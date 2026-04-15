@@ -4,18 +4,47 @@ layout: base
 <style>
   ::-webkit-scrollbar { display: none; }
   
-  /* Added a subtle background grid pattern */
+  /* --- FIXED BACKGROUND CROSS-FADE SYSTEM --- */
+  .fixed-bg-container {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - var(--header-height));
+    z-index: -1; /* Keeps it behind the content */
+    background-color: var(--bg-app);
+  }
+
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* The smooth cross-fade */
+  }
+
+  .bg-image.active {
+    opacity: 1;
+  }
+
+  /* The Darkening Filter */
+  .bg-overlay {
+    position: absolute;
+    inset: 0;
+    /* A dark wash that is slightly darker at the top and bottom */
+    background: linear-gradient(to bottom, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.7) 50%, rgba(26,26,26,0.9) 100%);
+    z-index: 1;
+  }
+
+  /* --- SCROLL CONTAINER --- */
   .scroll-container {
     height: calc(100dvh - var(--header-height));
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
-    background-color: var(--bg-app);
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-position: center center;
+    /* Removed the old grid background so we can see the photos */
+    background: transparent; 
   }
 
   .section {
@@ -30,76 +59,47 @@ layout: base
 
   .section.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* Gradient Text for Headlines */
+  /* --- TYPOGRAPHY & CARDS --- */
   .hero-title { 
-    font-size: 3.5rem; 
-    font-weight: 800; 
-    margin-bottom: 16px; 
-    line-height: 1.1; 
-    background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
-    -webkit-background-clip: text;
-    background-clip: text; /* <-- Added standard property */
-    -webkit-text-fill-color: transparent;
+    font-size: 3.5rem; font-weight: 800; margin-bottom: 16px; line-height: 1.1; 
+    background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .hero-subtitle { font-size: 1.2rem; max-width: 650px; margin-bottom: 32px; color: var(--text-body); }
+  .hero-subtitle { font-size: 1.2rem; max-width: 650px; margin-bottom: 32px; color: #e0e0e0; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
   
-  /* Hero Image Styling */
   .hero-image-wrapper {
-    margin-top: 40px;
-    max-width: 900px;
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border-card);
-    position: relative;
-    /* Prevents the image from making the section taller than the screen */
-    max-height: 35vh; 
-    overflow: hidden;
+    margin-top: 40px; max-width: 900px; width: 100%; border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.1);
+    position: relative; max-height: 35vh; overflow: hidden;
   }
-  .hero-image-wrapper img {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: top;
-  }
-  /* Fades out the bottom of the image so it blends into the background */
+  .hero-image-wrapper img { width: 100%; display: block; object-fit: cover; object-position: top; }
   .hero-image-wrapper::after {
     content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
-    background: linear-gradient(to bottom, transparent, var(--bg-app));
+    background: linear-gradient(to bottom, transparent, rgba(26,26,26,1));
   }
 
-  /* Split Feature Layout */
-  .feature-split {
-    display: flex; align-items: center; gap: 60px; max-width: 1000px; width: 100%; text-align: left;
-  }
+  .feature-split { display: flex; align-items: center; gap: 60px; max-width: 1000px; width: 100%; text-align: left; }
   .feature-text { flex: 1; }
-  .feature-image { flex: 1; border-radius: 8px; border: 1px solid var(--border-card); box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
+  .feature-image { flex: 1; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.8); overflow: hidden; }
   .feature-image img { width: 100%; display: block; }
 
-  /* Pricing Cards */
   .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 800px; width: 100%; text-align: left; }
-  .card { background: var(--bg-panel); border: 1px solid var(--border-card); border-radius: var(--radius-card); padding: 32px; position: relative; }
-  .card h3 { color: var(--text-primary); margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  /* Made cards slightly translucent to let the background peek through */
+  .card { background: rgba(36, 36, 36, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-card); padding: 32px; position: relative; }
+  .card h3 { color: var(--text-primary); margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
   .card ul { list-style: none; margin-bottom: 16px; padding: 0; }
   .card li { display: flex; justify-content: space-between; margin-bottom: 8px; color: var(--text-body); }
-  .total-row { font-weight: bold; color: var(--text-primary); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 12px; font-size: 1.1rem; }
+  .total-row { font-weight: bold; color: var(--text-primary); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; margin-top: 12px; font-size: 1.1rem; }
   
-  /* Glowing Pro Card */
-  .card.pro-card {
-    border-color: var(--accent);
-    box-shadow: 0 0 30px rgba(0, 212, 212, 0.1);
-    overflow: hidden;
-  }
+  .card.pro-card { border-color: var(--accent); box-shadow: 0 0 40px rgba(0, 212, 212, 0.15); }
   .card.pro-card h3 { color: var(--accent); border-bottom-color: rgba(0, 212, 212, 0.3); }
   .card.pro-card .total-row { color: var(--accent); border-top-color: rgba(0, 212, 212, 0.3); }
-  .badge {
-    position: absolute; top: 16px; right: -32px; background: var(--accent); color: #000;
-    font-size: 0.7rem; font-weight: 800; padding: 4px 40px; transform: rotate(45deg); letter-spacing: 1px;
-  }
+  .badge { position: absolute; top: 16px; right: -32px; background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 800; padding: 4px 40px; transform: rotate(45deg); letter-spacing: 1px; }
 
   .down-arrow {
     position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-    width: 40px; height: 40px; border-radius: 50%; background: var(--bg-panel);
-    border: 1px solid var(--border); color: var(--text-primary);
+    width: 40px; height: 40px; border-radius: 50%; background: rgba(36,36,36,0.8); backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.2); color: var(--text-primary);
     display: flex; justify-content: center; align-items: center;
     cursor: pointer; animation: bounce 2s infinite; text-decoration: none; z-index: 10;
   }
@@ -119,19 +119,42 @@ layout: base
   }
 </style>
 
+<!-- FIXED BACKGROUNDS -->
+<div class="fixed-bg-container">
+  <!-- I've added high-quality Unsplash placeholders so you can see it working immediately! -->
+  <div class="bg-image active" id="bg-0" style="background-image: url('https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Studio/Piano Vibe -->
+  <div class="bg-image" id="bg-1" style="background-image: url('https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Band/Live Vibe -->
+  <div class="bg-image" id="bg-2" style="background-image: url('https://images.unsplash.com/photo-1618609378039-b572a50b8157?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Abstract/Waveform Vibe -->
+  <div class="bg-image" id="bg-3" style="background-image: url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=2000&auto=format&fit=crop');"></div> <!-- Podcast Vibe -->
+  <div class="bg-overlay"></div>
+</div>
+
 <div class="scroll-container" id="scroller">
   {{ content }}
 </div>
 
 <script>
   const sections = document.querySelectorAll('.section');
+  const bgs = document.querySelectorAll('.bg-image');
+  
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        // Fade in the text
         entry.target.classList.add('is-visible');
+        
+        // Cross-fade the background
+        const index = entry.target.getAttribute('data-index');
+        bgs.forEach((bg, i) => {
+          if (i == index) {
+            bg.classList.add('active');
+          } else {
+            bg.classList.remove('active');
+          }
+        });
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.5 }); // Triggers when section is 50% visible
 
   sections.forEach(section => observer.observe(section));
 
