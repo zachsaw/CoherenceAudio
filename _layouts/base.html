@@ -70,6 +70,8 @@
   </style>
 </head>
 <body>
+  <!-- ONLY SHOW HEADER IF NOT ON THE HOME PAGE -->
+  {% if page.layout != 'home' %}
   <header class="site-header">
     <a class="brand" href="{{ '/' | relative_url }}">
       <img src="{{ '/images/logo.png' | relative_url }}" alt="Coherence Audio Logo" class="brand-logo">
@@ -81,6 +83,7 @@
       <a href="https://apps.microsoft.com/detail/9NBST9THCH5R" class="btn-primary" target="_blank">Get App</a>
     </nav>
   </header>
+  {% endif %}
 
   {{ content }}
 

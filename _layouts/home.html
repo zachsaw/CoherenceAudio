@@ -7,11 +7,11 @@ layout: base
   /* --- FIXED BACKGROUND CROSS-FADE SYSTEM --- */
   .fixed-bg-container {
     position: fixed;
-    top: var(--header-height);
+    top: 0; /* Starts at the very top of the screen */
     left: 0;
     width: 100vw;
-    height: calc(100vh - var(--header-height));
-    z-index: 0; /* Brought forward! */
+    height: 100vh; /* Full screen height */
+    z-index: 0; 
     background-color: var(--bg-app);
   }
 
@@ -39,7 +39,7 @@ layout: base
 
   /* --- SCROLL CONTAINER --- */
   .scroll-container {
-    height: calc(100dvh - var(--header-height));
+    height: 100dvh; /* Full screen height */
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
@@ -49,7 +49,7 @@ layout: base
   }
 
   .section {
-    height: calc(100dvh - var(--header-height));
+    height: 100dvh; /* Full screen height */
     scroll-snap-align: start;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     padding: 20px; text-align: center; position: relative;
