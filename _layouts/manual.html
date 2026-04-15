@@ -1,0 +1,205 @@
+---
+layout: base
+---
+<style>
+  /* --- GRID LAYOUT (Kept from our fixes) --- */
+  .manual-layout {
+    display: grid; 
+    grid-template-columns: 220px minmax(0, 1fr); 
+    gap: 32px;
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 40px 24px 80px; 
+    width: 100%;
+  }
+
+  .manual-content { min-width: 0; }
+
+  .manual-sidebar { 
+    position: sticky; 
+    top: calc(var(--header-height) + 32px); 
+    height: fit-content; 
+  }
+  
+  .manual-sidebar h3 { 
+    color: var(--text-primary); 
+    font-size: 1.1rem; 
+    margin-bottom: 16px; 
+    padding-bottom: 8px; 
+    border-bottom: 1px solid var(--border); 
+  }
+  
+  .manual-sidebar ul { list-style: none; padding: 0; margin: 0; }
+  .manual-sidebar li { margin-bottom: 10px; }
+  .manual-sidebar a { color: var(--text-body); text-decoration: none; font-size: 0.95rem; }
+  .manual-sidebar a:hover { color: var(--accent); }
+  
+  .content-card { 
+    background: var(--bg-panel); 
+    border: 1px solid var(--border-card); 
+    border-radius: var(--radius-card); 
+    padding: 36px 40px;
+  }
+
+  /* Headings */
+  .md-content h1,
+  .md-content h2,
+  .md-content h3,
+  .md-content h4,
+  .md-content h5,
+  .md-content h6 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    line-height: 1.3;
+  }
+
+  .md-content h1 { font-size: 1.75rem; margin-top: 0; }
+  .md-content h2 { font-size: 1.3rem;  border-bottom: 1px solid var(--border); padding-bottom: 0.35em; margin-top: 2.2em; }
+  .md-content h3 { font-size: 1.1rem; }
+  .md-content h4 { font-size: 1rem; }
+
+  /* Paragraphs */
+  .md-content p { margin-bottom: 1em; }
+
+  /* Links */
+  .md-content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .md-content a:hover {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+  }
+
+  /* Horizontal rule */
+  .md-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2em 0;
+  }
+
+  /* Bold / italic */
+  .md-content strong { color: var(--text-primary); font-weight: 600; }
+  .md-content em     { font-style: italic; }
+
+  /* Lists */
+  .md-content ul,
+  .md-content ol {
+    padding-left: 1.6em;
+    margin-bottom: 1em;
+  }
+  .md-content li { margin-bottom: 0.3em; }
+
+  /* Inline code */
+  .md-content code {
+    font-family: "Cascadia Code", "Consolas", "Courier New", monospace;
+    font-size: 0.88em;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 0.15em 0.45em;
+    color: var(--accent);
+  }
+
+  /* Code blocks */
+  .md-content pre {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-card);
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin-bottom: 1.2em;
+    max-width: 100%; /* Keeps grid from blowing out */
+  }
+  .md-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.875rem;
+    color: var(--text-body);
+  }
+
+  /* Block-quotes */
+  .md-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.4em 1em;
+    margin: 1em 0;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border-radius: 0 var(--radius-btn) var(--radius-btn) 0;
+  }
+
+  /* Images */
+  .md-content img {
+    max-width: 100%;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-card);
+    display: block;
+    margin: 1.2em auto;
+  }
+
+  /* Tables — mirroring the Settings window's clean rows */
+  .md-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.4em;
+    font-size: 0.92em;
+    display: block; /* Keeps grid from blowing out */
+    overflow-x: auto;
+  }
+  .md-content thead tr {
+    background: var(--bg-card);
+  }
+  .md-content th {
+    text-align: left;
+    padding: 8px 12px;
+    color: var(--text-primary);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .md-content td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .md-content tbody tr:last-child td { border-bottom: none; }
+  .md-content tbody tr:hover        { background: var(--bg-card); }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .manual-layout { 
+      grid-template-columns: minmax(0, 1fr); 
+      padding: 24px 16px; 
+    }
+    .manual-sidebar { position: relative; top: 0; margin-bottom: 24px; }
+    .content-card { padding: 24px 18px; } 
+  }
+</style>
+
+<div class="manual-layout">
+  <aside class="manual-sidebar">
+    <h3>User Manual</h3>
+    <ul>
+      <li><a href="{{ '/manual/' | relative_url }}">Introduction</a></li>
+      <li><a href="{{ '/manual/01-getting-started' | relative_url }}">01. Getting Started</a></li>
+      <li><a href="{{ '/manual/02-recording' | relative_url }}">02. Recording</a></li>
+      <li><a href="{{ '/manual/03-clock-sync-and-drift' | relative_url }}">03. Clock Sync & Drift</a></li>
+      <li><a href="{{ '/manual/04-editing' | relative_url }}">04. Editing</a></li>
+      <li><a href="{{ '/manual/05-export' | relative_url }}">05. Export</a></li>
+      <li><a href="{{ '/manual/06-settings' | relative_url }}">06. Settings Reference</a></li>
+      <li><a href="{{ '/manual/07-use-cases' | relative_url }}">07. Use Cases</a></li>
+    </ul>
+  </aside>
+
+  <main class="manual-content">
+    <div class="content-card">
+      <article class="md-content">
+        {{ content }}
+      </article>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title %}{{ page.title }} – Coherence Audio{% else %}Coherence Audio{% endif %}</title>
+  <style>
+    :root {
+      --bg-app:       #1a1a1a;
+      --bg-panel:     #242424;
+      --bg-card:      #2d2d2d;
+      --border:       #3c3c3c;
+      --border-card:  #404040;
+      --text-primary: #f0f0f0;
+      --text-body:    #cccccc;
+      --text-muted:   #888888;
+      --accent:       #00d4d4;
+      --accent-hover: #00ffff;
+      --radius-card:  8px;
+      --radius-btn:   4px;
+      --header-height: 56px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 15px; line-height: 1.65;
+      color: var(--text-body); background-color: var(--bg-app);
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+
+    /* Header */
+    .site-header {
+      background: var(--bg-panel); border-bottom: 1px solid var(--border);
+      padding: 0 24px; display: flex; justify-content: space-between; align-items: center;
+      height: var(--header-height); position: sticky; top: 0; z-index: 100;
+    }
+    .brand { 
+      font-size: 16px; 
+      font-weight: 600; 
+      color: var(--text-primary); 
+      text-decoration: none; 
+      display: flex;         /* ADDED */
+      align-items: center;   /* ADDED */
+      gap: 10px;             /* ADDED: Space between logo and text */
+    }
+    
+    /* ADD THIS NEW CLASS FOR THE LOGO */
+    .brand-logo {
+      height: 28px;          /* Keeps it nicely sized within the header */
+      width: auto;
+      border-radius: 4px;    /* Optional: slightly rounds the logo corners */
+    }
+    .header-nav { display: flex; align-items: center; gap: 24px; }
+    .header-nav a { color: var(--text-body); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .header-nav a:hover { color: var(--text-primary); }
+    .btn-primary {
+      background: var(--accent); color: #000 !important; padding: 6px 16px;
+      border-radius: var(--radius-btn); font-weight: 600; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    /* Footer */
+    .site-footer {
+      text-align: center; padding: 24px; font-size: 0.85em; color: var(--text-muted);
+      border-top: 1px solid var(--border); background: var(--bg-app); margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <img src="{{ '/images/logo.png' | relative_url }}" alt="Coherence Audio Logo" class="brand-logo">
+      Coherence Audio
+    </a>
+    <nav class="header-nav">
+      <a href="{{ '/#features' | relative_url }}">Features</a>
+      <a href="{{ '/manual/' | relative_url }}">Manual</a>
+      <a href="https://apps.microsoft.com/detail/9NBST9THCH5R" class="btn-primary" target="_blank">Get App</a>
+    </nav>
+  </header>
+
+  {{ content }}
+
+  {% if page.layout != 'home' %}
+  <footer class="site-footer">
+    &copy; 2026 Coherence Audio | Windows 11 Native Multi-Track Recorder
+  </footer>
+  {% endif %}
+</body>
+</html>

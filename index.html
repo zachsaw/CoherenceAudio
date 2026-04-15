@@ -1,0 +1,87 @@
+---
+layout: home
+---
+<!-- SECTION 1: HERO -->
+<section class="section" id="hero">
+  <h1 class="hero-title">Record Multiple USB Mics.<br>Zero Interfaces. Zero Drift.</h1>
+  <p class="hero-subtitle">The Windows multi-track audio recorder that captures every USB microphone as its own independent track. Professional studio flexibility on a budget.</p>
+  
+  <div style="display: flex; gap: 16px; position: relative; z-index: 2;">
+    <a href="https://apps.microsoft.com/detail/9NBST9THCH5R" class="btn-primary" style="font-size: 1.1rem; padding: 10px 24px;">Download Free</a>
+    <a href="{{ '/manual/' | relative_url }}" style="padding: 10px 24px; border: 1px solid var(--border); border-radius: var(--radius-btn); color: var(--text-primary); text-decoration: none; background: var(--bg-panel);">Read Manual</a>
+  </div>
+
+  <!-- The Hero Screenshot -->
+  <div class="hero-image-wrapper">
+    <img src="{{ '/images/Screenshot-Playing.png' | relative_url }}" alt="Coherence Audio Recording">
+  </div>
+
+  <a class="down-arrow" onclick="scrollToNext(0)">↓</a>
+</section>
+
+<!-- SECTION 2: THE PROBLEM (SPLIT SCREEN) -->
+<section class="section" id="features">
+  <div class="feature-split">
+    <div class="feature-text">
+      <h2 class="hero-title" style="font-size: 2.5rem; text-align: left;">The USB Clock Drift Problem</h2>
+      <p class="hero-subtitle" style="text-align: left; margin-bottom: 20px;">
+        Standard software forces all mics into one mixed track. If you try to record multiple USB mics independently, their internal hardware clocks drift out of sync over time, ruining your audio phase.
+      </p>
+      <p class="hero-subtitle" style="text-align: left; color: var(--text-primary);">
+        <strong>The Coherence Way:</strong> Plug in standard USB microphones. Coherence Audio records them raw, and the Pro Edition automatically corrects hardware clock drift to the millisecond.
+      </p>
+    </div>
+    <div class="feature-image">
+      <!-- Using your drift correction screenshot -->
+      <img src="{{ '/images/Drift-Corrected-End.png' | relative_url }}" alt="Drift Corrected Timeline">
+    </div>
+  </div>
+  
+  <a class="down-arrow" onclick="scrollToNext(1)">↓</a>
+</section>
+
+<!-- SECTION 3: TCO COMPARISON -->
+<section class="section" id="pricing">
+  <h2 class="hero-title" style="font-size: 2.5rem;">Pro Studio Mixing.<br>Without the Pro Price Tag.</h2>
+  <p class="hero-subtitle">By replacing expensive hardware with intelligent software, Coherence Audio cuts your setup costs drastically.</p>
+  
+  <div class="comparison-grid">
+    <div class="card">
+      <h3>Traditional 4-Mic Setup</h3>
+      <ul>
+        <li><span>4x XLR Microphones</span> <span>$400</span></li>
+        <li><span>4-Channel Interface</span> <span>$250</span></li>
+        <li><span>4x XLR Cables</span> <span>$80</span></li>
+        <li class="total-row"><span>Total Cost</span> <span>$730</span></li>
+      </ul>
+    </div>
+    
+    <!-- The Glowing Pro Card -->
+    <div class="card pro-card">
+      <div class="badge">PRO</div>
+      <h3>Coherence Setup</h3>
+      <ul>
+        <li><span>4x USB Microphones</span> <span>$400</span></li>
+        <li><span>Audio Interface</span> <span>$0</span></li>
+        <li><span>Coherence Pro License</span> <span>$169</span></li>
+        <li class="total-row"><span>Total Cost</span> <span>$569</span></li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size: 0.85em; color: var(--text-muted); margin-top: 24px;">* The base app is free. The $169 Pro upgrade is a one-time fee to unlock automatic drift correction.</p>
+  
+  <a class="down-arrow" onclick="scrollToNext(2)">↓</a>
+</section>
+
+<!-- SECTION 4: CTA -->
+<section class="section" id="cta">
+  <div style="max-width: 600px; background: var(--bg-panel); padding: 50px; border-radius: 16px; border: 1px solid var(--border-card); box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    <h2 class="hero-title" style="font-size: 2.5rem;">Ready to start recording?</h2>
+    <p class="hero-subtitle" style="margin: 0 auto 32px;">Get the base app for free today. Upgrade to Pro whenever you're ready.</p>
+    <a href="https://apps.microsoft.com/detail/9NBST9THCH5R" class="btn-primary" style="font-size: 1.2rem; padding: 12px 32px; display: inline-block;">Get Coherence Audio</a>
+  </div>
+  
+  <footer class="site-footer" style="position: absolute; bottom: 0; width: 100%; border: none; background: transparent;">
+    &copy; 2026 Coherence Audio | <a href="{{ '/manual/' | relative_url }}" style="color: var(--text-muted);">User Manual</a>
+  </footer>
+</section>
