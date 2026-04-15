@@ -11,7 +11,7 @@ layout: base
     left: 0;
     width: 100vw;
     height: calc(100vh - var(--header-height));
-    z-index: -1; /* Keeps it behind the content */
+    z-index: 0; /* Brought forward! */
     background-color: var(--bg-app);
   }
 
@@ -43,8 +43,9 @@ layout: base
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
-    /* Removed the old grid background so we can see the photos */
     background: transparent; 
+    position: relative; /* Added so z-index works */
+    z-index: 1;         /* Puts the text on top of the images */
   }
 
   .section {
