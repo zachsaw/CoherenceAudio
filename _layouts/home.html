@@ -49,13 +49,13 @@ layout: base
   }
 
   .section {
-    height: 100dvh; /* Full screen height */
+    min-height: 100dvh; /* Full screen height */
+    height: auto;
     scroll-snap-align: start;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 20px; text-align: center; position: relative;
+    padding: 80px 20px; text-align: center; position: relative;
     opacity: 0; transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    overflow: hidden;
   }
 
   .section.is-visible { opacity: 1; transform: translateY(0); }
@@ -123,15 +123,37 @@ layout: base
     60% { transform: translate(-50%, -5px); }
   }
 
+  /* --- MOBILE PORTRAIT --- */
   @media (max-width: 768px) {
-    .hero-title { font-size: 2.2rem; }
+    .section {
+      padding-top: 60px 20px;
+    }
+    .hero-title { font-size: 2rem; margin-bottom: 12px; }
+    .hero-subtitle { font-size: 1rem; margin-bottom: 24px; }
     .feature-split { flex-direction: column; gap: 30px; text-align: center; }
-    .comparison-grid { grid-template-columns: 1fr; gap: 20px; }
-    .hero-image-wrapper { max-height: 25vh; }
+    .comparison-grid { grid-template-columns: 1fr; gap: 16px; }
+    .hero-image-wrapper { max-height: 25vh; margin-top: 20px; }
+    .card { padding: 20px; }
+    .card h3 { margin-bottom: 12px; }
+    .down-arrow { bottom: 20px; }
+  }
+
+  /* --- MOBILE LANDSCAPE & SHORT SCREEN --- */
+  @media (max-height: 600px) {
+    .scroll-container {
+      scroll-snap-type: none; /* Disable snapping so users can freely scroll */
+    }
+    .section {
+      min-height: 100dvh;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      justify-content: flex-start;
+    }
+    .hero-image-wrapper { display: none; } /* Hide image to save precious vertical space */
+    .down-arrow { display: none; } /* Hide bouncing arrow in free-scroll mode */
   }
 </style>
 
-<!-- FIXED BACKGROUNDS -->
 <div class="fixed-bg-container">
   <div class="bg-image active" id="bg-0" style="background-image: url('{{ '/images/piano-recording.jpg' | relative_url }}');"></div> <!-- Studio/Piano Vibe -->
   <div class="bg-image" id="bg-1" style="background-image: url('{{ '/images/band.jpg' | relative_url }}');"></div> <!-- Band/Live Vibe -->
@@ -165,7 +187,7 @@ layout: base
         });
       }
     });
-  }, { threshold: 0.5 }); // Triggers when section is 50% visible
+  }, { threshold: 0.3 }); // Triggers when section is 30% visible
 
   sections.forEach(section => observer.observe(section));
 
