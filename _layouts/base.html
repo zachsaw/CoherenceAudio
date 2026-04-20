@@ -107,5 +107,24 @@
     &copy; 2026 Coherence Audio | Windows 11 Native Multi-Track Recorder
   </footer>
   {% endif %}
+  
+  <!-- OS Detection & Store Deep Linking -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Check if the user's operating system is Windows
+      if (navigator.userAgent.toLowerCase().indexOf("win") !== -1) {
+        
+        // Find EVERY link on the page that points to your web store URL
+        const storeLinks = document.querySelectorAll('a[href*="apps.microsoft.com/detail/9NBST9THCH5R"]');
+        
+        // Swap them to the native Windows Store protocol
+        storeLinks.forEach(link => {
+          link.href = "ms-windows-store://pdp/?productid=9NBST9THCH5R";
+          // Optional: Remove target="_blank" so it doesn't open a blank browser tab before launching the store app
+          link.removeAttribute("target"); 
+        });
+      }
+    });
+  </script>
 </body>
 </html>
